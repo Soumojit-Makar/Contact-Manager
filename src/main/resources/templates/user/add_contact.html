@@ -233,6 +233,11 @@
     <script>
       function resetForm() {
         document.getElementById("myForm").reset();
+        document.querySelector("input[name='name']").value = "";
+        document.querySelector("input[name='email']").value = "";
+        document.querySelector("input[name='password']").value = "";
+        document.querySelector("input[name='phoneNo']").value = "";
+        document.querySelector("textarea").value = "";
       }
     </script>
   </body>

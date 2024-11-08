@@ -1,6 +1,7 @@
 const deleteModel = document.getElementById('delete_user');
 
-const baseurl="http://localhost:8080";
+// const baseurl="http://localhost:8080";
+const baseurl="https://www.soumojitmakar.site"
 
 const options2 = {
     placement: 'bottom-right',

@@ -33,13 +33,16 @@ public class Helper {
     }
 
     public static String getLinkForEmailVarification(String emailToken) {
-        String link = "http://localhost:8080/auth/varify-email?token=" + emailToken;
+        // String link = "http://localhost:8080/auth/varify-email?token=" + emailToken;
+        String link = "https://www.soumojitmakar.site/auth/varify-email?token=" + emailToken;
 
         return link;
     }
 
     public static String getLinkForForgetPasswoed(String Token) {
-        String link = "http://localhost:8080/auth/changePassword?token=" + Token;
+//         String link = "http://localhost:8080/auth/changePassword?token=" + Token;
+        String link = "https://www.soumojitmakar.site/auth/changePassword?token=" + Token;
+
         return link;
     }
 }

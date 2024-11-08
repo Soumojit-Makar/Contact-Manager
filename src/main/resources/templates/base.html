@@ -13,6 +13,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     />
+
     <link rel="stylesheet" data-th-href="@{'/CSS/output.css'}" />
     <link rel="stylesheet" data-th-href="@{'/CSS/style.css'}" />
     <link
@@ -21,7 +22,6 @@
     />
   </head>
   <body class="h-screen dark:bg-gray-900 dark:text-white">
-    
     <div th:if="${loggedInUser}">
       <div
         class="bottom-6"
@@ -31,21 +31,20 @@
 
     <div th:unless="${loggedInUser}">
       <div th:replace="~{navbar :: navbardefault}"></div>
-
     </div>
     <div th:if="${loggedInUser}">
       <div class="mb-10" th:replace="~{user/sidebar :: sidebar1}"></div>
     </div>
 
     <main class="mt-9">
-        <div data-th-replace="${content}"></div>
-      </div>
+      <div data-th-replace="${content}"></div>
     </main>
     <!-- <footer>footer</footer> -->
     <!--javaScript-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
     <script th:src="@{'/JS/script.js'}"></script>
+
     <th:block data-th-replace="${script}"></th:block>
   </body>
 </html>
