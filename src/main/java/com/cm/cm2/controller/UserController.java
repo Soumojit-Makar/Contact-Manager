@@ -48,16 +48,16 @@ private final ImageService imageService;
         if (user.getUserId().equalsIgnoreCase(id)) {
             userServiceimp.deleteUser(id);
 
-            session.setAttribute("message", Message.builder().contant("Your account successfully deleted.").type(MessageType.red).build());
+            session.setAttribute("message",new Message("Your account successfully deleted.",MessageType.red));
             return "redirect:/login";
         }
-        session.setAttribute("message", Message.builder().contant("User Not found").type(MessageType.red).build());
+        session.setAttribute("message",new Message("User Not found",MessageType.red));
         return "error_page";
     }
     @GetMapping(value = "/update")
     public String updateUser( Authentication authentication,Model model,HttpSession session){
        if (authentication==null){
-           session.setAttribute("message", Message.builder().contant("User Not found").type(MessageType.red).build());
+           session.setAttribute("message",new Message("User Not found",MessageType.red));
            return "error_page";
        }
         String userName = Helper.getEmailOfLoginUser(authentication);
@@ -78,7 +78,7 @@ private final ImageService imageService;
         }
         User user1 = userServiceimp.getUserByEmail(updateUserForm.getEmail());
         if (user1 == null) {
-            session.setAttribute("message", Message.builder().contant("This Email Id is already present").type(MessageType.red).build());
+            session.setAttribute("message", new Message("This Email Id is already present",MessageType.red));
             return "user/profile";
         }
         user1.setName(updateUserForm.getName());
@@ -91,7 +91,7 @@ private final ImageService imageService;
             user1.setProfilePic(image);
         }
         userServiceimp.updateUser(user1);
-        Message message = Message.builder().contant("Update Successful! ").type(MessageType.green).build();
+        Message message =new Message("Update Successful! ",MessageType.green);
         session.setAttribute("message", message);
         return "user/profile";
     }

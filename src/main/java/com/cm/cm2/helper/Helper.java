@@ -1,11 +1,10 @@
 package com.cm.cm2.helper;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
-import org.springframework.stereotype.Component;
+
 public class Helper {
 
 //       private static final String BaseURL="http://localhost:8080";

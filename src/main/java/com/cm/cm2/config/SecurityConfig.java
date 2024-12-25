@@ -51,8 +51,10 @@ public class SecurityConfig {
             formLogin.failureHandler((request, response, exception) -> {
                 if (exception instanceof DisabledException) {
                     HttpSession session = request.getSession();
+                    Message message = new Message("User is disabled. Please check your mailbox. ",MessageType.red);
                     session.setAttribute("message",
-                            Message.builder().contant("User is disabled. Please check your mailbox. ").type(MessageType.red).build());
+                            message
+                    );
                     response.sendRedirect("/login");
                 } else {
                     response.sendRedirect("/login?error=true");

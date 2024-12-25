@@ -6,9 +6,20 @@ import lombok.Data;
 import lombok.ToString;
 
 @ToString
-@Data
+
 public class ForgetPasswordForm {
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid Email Address")
     private String email;
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public ForgetPasswordForm() {
+    }
+    public ForgetPasswordForm(String email) {
+        this.email = email;
+    }
 }

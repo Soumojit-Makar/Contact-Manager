@@ -51,10 +51,8 @@ public class ContactController {
     @PostMapping("/add_contact")
     public String save(@Valid @ModelAttribute ContactForm contactForm, BindingResult bindingResult, Authentication authentication, HttpSession session) {
         if (bindingResult.hasErrors()) {
-            session.setAttribute("message", Message.builder()
-                    .contant("Please correct the following errors. ")
-                    .type(MessageType.red)
-                    .build());
+            session.setAttribute("message",new Message("Please correct the following errors. ",
+                    MessageType.red));
             return "user/add_contact";
         }
         String username = Helper.getEmailOfLoginUser(authentication);
@@ -69,10 +67,7 @@ public class ContactController {
         contactService.saveContact(contact);
         System.out.println(contactForm);
 
-        session.setAttribute("message", Message.builder()
-                .contant("You has been successfully added a new contact. ")
-                .type(MessageType.green)
-                .build());
+        session.setAttribute("message",new Message("You has been successfully added a new contact. ",MessageType.green));
         return "redirect:/user/contacts/add_contact";
     }
 
@@ -155,10 +150,9 @@ public class ContactController {
             contact.setPic(imageService.uploadImage(contactForm.getContactImage()));
         }
         contactService.updateContact(contact);
-        session.setAttribute("message", Message.builder()
-                .contant("Contact Updated... ")
-                .type(MessageType.green)
-                .build());
+        session.setAttribute("message", new Message
+                ("Contact Updated... ",
+                MessageType.green));
 
         return "redirect:/user/contacts/view/" + contactId;
     }

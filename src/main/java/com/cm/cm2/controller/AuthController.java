@@ -35,10 +35,10 @@ public class AuthController {
             user.setEmailVefied(true);
             user.setEnable(true);
             userService.updateUser(user);
-            session.setAttribute("message", Message.builder().contant(" Your email address has been successfully verified. You can now log in to your account using your credentials.").type(MessageType.green).build());
+            session.setAttribute("message",new Message(" Your email address has been successfully verified. You can now log in to your account using your credentials.",MessageType.green));
             return "sucess_page";
         }
-        session.setAttribute("message", Message.builder().contant("Email not verified ! Token").type(MessageType.red).build());
+        session.setAttribute("message", new Message("Email not verified ! Token",MessageType.red));
         return "error_page";
     }
 
@@ -50,7 +50,7 @@ public class AuthController {
             model.addAttribute("changePassword", changePasswordForm);
             return "change_password";
         }
-        session.setAttribute("message", Message.builder().contant("Some thing error.").type(MessageType.red).build());
+        session.setAttribute("message",new Message("Some thing error.",MessageType.red));
         return "error_page";
     }
 
@@ -63,11 +63,11 @@ public class AuthController {
         if (user != null) {
             user.setPassword(changePasswordForm.getPassword());
             userService.updateUser(user);
-            session.setAttribute("message", Message.builder().contant(" Your password has been successfully change.").type(MessageType.green).build());
+            session.setAttribute("message", new Message(" Your password has been successfully change.",MessageType.green));
             return "sucess_page";
 
         }
-        session.setAttribute("message", Message.builder().contant("User is not found.").type(MessageType.red).build());
+        session.setAttribute("message", new Message("User is not found.",MessageType.red));
 
         return "error_page";
     }

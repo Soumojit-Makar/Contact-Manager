@@ -87,7 +87,7 @@ public class PageController {
         }
         User user1 = userService.getUserByEmail(userForm.getEmail());
         if (user1 != null) {
-            session.setAttribute("message", Message.builder().contant("This Email Id is already present").type(MessageType.red).build());
+            session.setAttribute("message", new Message("This Email Id is already present",MessageType.red));
 
             return "register";
         }
@@ -97,7 +97,7 @@ public class PageController {
         user.setProfilePic("https://th.bing.com/th/id/R.19fa7497013a87bd77f7adb96beaf768?rik=144XvMigWWj2bw&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f5%2fUser-Profile-PNG-High-Quality-Image.png&ehk=%2bat%2brmqQuJrWL609bAlrUPYgzj%2b%2f7L1ErXRTN6ZyxR0%3d&risl=&pid=ImgRaw&r=0");
 
         User saveUser = userService.saveUser(user);
-        Message message = Message.builder().contant("Registration Successful!Please verify your email before logging in. ").type(MessageType.green).build();
+        Message message = new Message("Registration Successful!Please verify your email before logging in. ",MessageType.green);
         session.setAttribute("message", message);
         System.out.print(saveUser);
         return "redirect:/login";
@@ -113,19 +113,19 @@ public class PageController {
     @PostMapping("/forgetPassword")
     public String forgetPassword(@Valid @ModelAttribute ForgetPasswordForm forgetPasswordForm, BindingResult bindingResult, HttpSession session) {
         if (bindingResult.hasErrors()) {
-            session.setAttribute("message", Message.builder().contant("Fill the information").type(MessageType.red).build());
+            session.setAttribute("message",new Message("Fill the information",MessageType.red));
             return "forget";
         }
         User user = userService.getUserByEmail(forgetPasswordForm.getEmail());
         if (user == null) {
-            session.setAttribute("message", Message.builder().contant("Email id not found").type(MessageType.red).build());
+            session.setAttribute("message",new Message("Email id not found",MessageType.red));
             return "redirect:/login";
         }
         String token = UUID.randomUUID().toString();
         user.setForgetpasswordToken(token);
         userService.updateUser(user);
         emailService.sendEmail(forgetPasswordForm.getEmail(), "For Reset Password", Helper.getLinkForForgetPasswoed(token));
-        session.setAttribute("message", Message.builder().contant("Check your email box").type(MessageType.green).build());
+        session.setAttribute("message",new Message("Check your email box",MessageType.green));
         return "redirect:/login";
     }
 

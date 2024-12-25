@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Size;
 
 import lombok.ToString;
 
-@ToString
 public class ChangePasswordForm {
 
     @NotBlank(message = "Email is required")
@@ -30,5 +29,9 @@ public class ChangePasswordForm {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    @Override
+    public String toString() {
+        return "ChangePasswordForm [email=" + email + ", password=" + password + "]";
     }
 }
