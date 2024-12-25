@@ -1,6 +1,6 @@
 
-//const baseurl="http://localhost:8080";
-const baseurl="https://www.soumojitmakar.site"
+// const baseurl="http://localhost:8080";
+const baseurl="https://www.soumojitmakar.site";
 
 const viewContactsModel=document.getElementById('view_contact');
 
